@@ -15,12 +15,20 @@ function generateTeam() {
         {
             type: 'input',
             name: 'name',
-            message: 'Enter Employee name: ',
+            message: "Enter Employee name: ",
         },
 
         {
             type: 'input',
-        }
+            name: 'id',
+            message: "Enter Employee's ID number: ",
+        },
+
+        {
+            type: 'input',
+            name: 'email',
+            message: "Enter Employee's email address: ",
+        },
     ])
 }
 

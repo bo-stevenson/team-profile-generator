@@ -9,9 +9,9 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
-
+const team = [];
 function generateTeam() {
-    inquirer.prompt([
+    const employee = inquirer.prompt([
         {
             type: 'input',
             name: 'name',
@@ -29,9 +29,55 @@ function generateTeam() {
             name: 'email',
             message: "Enter Employee's email address: ",
         },
+
+        {
+            type: 'list',
+            name: 'role',
+            message: "What is the Employee's job?",
+            choices: ["Manager, Engineer, Intern"],
+        },
     ])
+    switch (employee.role) {
+        case "Manager":
+            const officeNumber = inquirer.prompt([
+                {
+                    type: 'input',
+                    name: 'officeNumber',
+                    message: "Enter employee's office number: ",
+                }])
+                teamMember = new Mangager (employee.name, employee.id, employee.email, employee.officeNumber);
+
+
+        default:
+            console.log("Error!: ", error);
+
+        }
+            team.push(teamMember);
+            inquirer.prompt([
+                {
+                    type: 'confirm',
+                    name: 'add',
+                    message: "Add another employee?"
+                }
+            ]);
+            if(add){
+                generateTeam();
+            }else{
+                render(team);
+                fs.writeFile(outputPath,render(team), (err) => {
+                    if (err){
+                        throw err;
+                    }
+                    console.log("Successfully wrote html!");
+                });
+            }
+            
+        
+
 }
 
+
+generateTeam();
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 

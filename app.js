@@ -10,12 +10,12 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 const team = [];
-function generateTeam() {
-    const employee = inquirer.prompt([
+async function generateTeam() {
+    const employee = await inquirer.prompt([
         {
             type: 'input',
             name: 'name',
-            message: "Enter Employee name: ",
+            message: "Enter Employee name: "
         },
 
         {
@@ -34,45 +34,77 @@ function generateTeam() {
             type: 'list',
             name: 'role',
             message: "What is the Employee's job?",
-            choices: ["Manager, Engineer, Intern"],
+            choices: ["Manager", "Engineer", "Intern"],
         },
     ])
+    
     switch (employee.role) {
         case "Manager":
-            const officeNumber = inquirer.prompt([
+            const officeNumber = await inquirer.prompt([
                 {
                     type: 'input',
                     name: 'officeNumber',
                     message: "Enter employee's office number: ",
                 }])
-                teamMember = new Mangager (employee.name, employee.id, employee.email, employee.officeNumber);
+                teamMember = new Manager (employee.name, employee.id, employee.email, officeNumber.officeNumber);
+                team.push(teamMember);
+                addTeam();
+            return;
+        case "Engineer":
+            const officeNumber = await inquirer.prompt([
+                {
+                    type: 'input',
+                    name: 'github',
+                    message: "Enter employee's office number: ",
+                }])
+                teamMember = new Manager (employee.name, employee.id, employee.email, officeNumber.officeNumber);
+                team.push(teamMember);
+                addTeam();
+            return;
 
+        case "Intern":
+            const officeNumber = await inquirer.prompt([
+                {
+                    type: 'input',
+                    name: 'officeNumber',
+                    message: "Enter employee's office number: ",
+                }])
+                teamMember = new Manager (employee.name, employee.id, employee.email, officeNumber.officeNumber);
+                team.push(teamMember);
+                addTeam();
+            return;
 
         default:
-            console.log("Error!: ", error);
+            console.log("Error!");
+                return;
 
         }
-            team.push(teamMember);
+        function addTeam(){
+            
             inquirer.prompt([
                 {
                     type: 'confirm',
-                    name: 'add',
+                    name: 'addMember',
                     message: "Add another employee?"
                 }
-            ]);
-            if(add){
+            ]).then(function ({addMember}){
+            if(addMember){
                 generateTeam();
             }else{
                 render(team);
-                fs.writeFile(outputPath,render(team), (err) => {
+                fs.writeFile(outputPath, render(team), (err) => {
                     if (err){
                         throw err;
                     }
                     console.log("Successfully wrote html!");
                 });
             }
-
-            
+        }).catch((err) => {
+            if (err){
+                console.log("Error: ", err);
+            }
+        })
+    }
             
         
 

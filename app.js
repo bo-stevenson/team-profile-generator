@@ -71,6 +71,8 @@ function generateTeam() {
                     console.log("Successfully wrote html!");
                 });
             }
+
+            
             
         
 

@@ -1,0 +1,15 @@
+.jumbotron {
+    background-color: lightcoral;
+}
+
+#manager{
+    background-color: orange;
+}
+
+#engineer{
+    background-color:purple;
+}
+
+#intern{
+    background-color: green;
+}

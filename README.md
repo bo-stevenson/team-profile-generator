@@ -7,7 +7,7 @@ This project was made to use Test Driven Development in order to create a dynami
 
 1. [Installation](#installation)
 
-2. [Usage](#usage)
+2. [Usage](#usage)  
 
 3. [Contributions](#contribution)
 

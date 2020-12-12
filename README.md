@@ -38,8 +38,8 @@ Change tests as needed
 
 ## Screenshots
 
-![Screenshot](assets/images/screenshot.png)
-![Screenshot](assets/images/screenshot-1.png) 
+![Screenshot](./assets/screenshot.png)
+![Screenshot](./assets/screenshot-1.png) 
 
 ## License
 

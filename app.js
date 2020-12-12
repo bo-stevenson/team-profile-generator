@@ -63,7 +63,15 @@ async function generateTeam() {
             return;
 
         case "Intern":
-            
+            const school = await inquirer.prompt([
+                {
+                    type: 'input',
+                    name: 'schoolName',
+                    message: "Enter employee's place of study: ",
+                }])
+                teamMember = new Intern (employee.name, employee.id, employee.email, school.schoolName);
+                team.push(teamMember);
+                addTeam();
             return;
 
         default:

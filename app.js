@@ -51,27 +51,19 @@ async function generateTeam() {
                 addTeam();
             return;
         case "Engineer":
-            const officeNumber = await inquirer.prompt([
+            const github = await inquirer.prompt([
                 {
                     type: 'input',
-                    name: 'github',
-                    message: "Enter employee's office number: ",
+                    name: 'githubAcc',
+                    message: "Enter employee's GitHub username: ",
                 }])
-                teamMember = new Manager (employee.name, employee.id, employee.email, officeNumber.officeNumber);
+                teamMember = new Engineer (employee.name, employee.id, employee.email, github.githubAcc);
                 team.push(teamMember);
                 addTeam();
             return;
 
         case "Intern":
-            const officeNumber = await inquirer.prompt([
-                {
-                    type: 'input',
-                    name: 'officeNumber',
-                    message: "Enter employee's office number: ",
-                }])
-                teamMember = new Manager (employee.name, employee.id, employee.email, officeNumber.officeNumber);
-                team.push(teamMember);
-                addTeam();
+            
             return;
 
         default:

@@ -106,7 +106,7 @@ async function generateTeam() {
         })
     }
             
-    
+     
         
 
 }
